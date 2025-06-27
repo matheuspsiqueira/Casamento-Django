@@ -98,7 +98,7 @@
         {% empty %}
         <tr><td colspan="3">Seu carrinho está vazio.</td></tr>
         {% endfor %}
-        <tr class="item">
+        <tr class="total-linha">
           <td class="item-desc"><strong>Total:</strong></td>
           <td class="quantidade"></td>
           <td class="valor"><strong>R$ {{ total|floatformat:2 }}</strong></td>

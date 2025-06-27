@@ -288,43 +288,76 @@
   width: 60%;
 }
 
-.item-desc {
-  flex-direction: column;
-  align-items: flex-start;
-}
+@media (max-width: 768px) {
 
-.item-desc img {
-  margin-bottom: 10px;
-  width: 100%;
-  max-width: 120px;
-}
+  table {
+    width: 100%;
+  }
 
-.remove{
-  text-align: center;
-}
+  thead {
+    display: none; /* Esconde cabeçalho em telas pequenas */
+  }
 
-table {
-  font-size: 14px;
-}
+  tbody, tr, td {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 
-.quantidade, .valor {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-}
+  tr.item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
 
-.counter {
-  justify-content: flex-start;
-}
+  .item-desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* CENTRALIZA IMG + TEXTO */
+  }
+
+  .counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .remove {
+    margin-top: 10px;
+  }
+
+  .valor {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+    .total-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .total-linha td {
+    display: block;
+    width: auto;
+    text-align: left;
+  }
+
+  .total-linha .valor {
+    text-align: right;
+    flex: 1;
+  }
+
+  .total-linha .quantidade {
+    display: none; /* Esconde a célula vazia */
+  }
 
 .rodape, .rodape-final {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-}
-
-.botao, .botao-outline, .botao-outline-final {
-  width: 60%;
 }
 
 .opcoes-pagamento{

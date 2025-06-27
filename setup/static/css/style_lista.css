@@ -1,0 +1,454 @@
+.titulo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12%;
+    margin-top: 10%;
+    flex-wrap: wrap;
+  }
+  
+  .titulo h1 {
+    color: #AC4314;
+    font-size: 170px;
+    font-family: 'Virtual-regular';
+    margin: 0;
+    text-align: center;
+  }
+  
+  .imagem-lateral {
+    width: 170px;
+  }
+  
+  .texto-container p {
+    text-align: center;
+    max-width: 70%;
+    font-size: 29px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  .imagens-container {
+    display: flex;
+    justify-content: center;
+    gap: 18%;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  
+  .opcao{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .margin{
+    margin: 3% 0;
+  }
+  
+  .opcao-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    padding: 40px 40px;
+    background-color: #d77049;
+    color: #fff;
+    width: 70%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .lado-esquerdo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .lado-esquerdo img {
+    width: 300px;
+    height: 250px;
+    border-radius: 12px;
+  }
+  
+  .botao-personalizado {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #AC4314;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botao-personalizado:hover {
+    background-color: #8f3511;
+  }
+  
+  .lado-direito h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 25px;
+  }
+  
+  .lado-direito p {
+    font-size: 20px;
+    max-width: 800px;
+  }
+  
+  .filtro {
+    display: flex;
+    background-color: #d76f496c;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 30%;
+    flex-wrap: wrap;
+    height: 120px;
+    margin-bottom: 30px;
+  }
+  
+  .filtro div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #7f604e;
+  }
+  
+  .titulo-nosso-lar h1 {
+    color: #AC4314;
+    font-size: 170px;
+    font-family: 'Virtual-regular';
+    margin: 0;
+    text-align: center;
+  }
+  
+  .filtro p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 22px;
+  }
+  
+  .filtro button,
+  .filtro select {
+    padding: 5px 10px;
+    border: 2px solid #d76f496c;
+    background-color: transparent;
+    color: #7f604e;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s ease;
+    font-size: 20px;
+    outline: none;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .filtro button:hover,
+  .filtro select:hover{
+    background-color: #AC4314;
+    color: #fff;
+    border: 2px solid #AC4314;
+  }
+  
+  .btn-custom {
+    background-color: #d76f496c;
+    color: #7f604e;
+    font-size: 20px;
+  }
+  
+  .btn-custom:hover {
+    background-color: #AC4314;
+    color: white;
+  }
+  
+  .custom-dropdown-menu {
+    background-color: #d76f496c;
+    border: none;
+  }
+  
+  .custom-dropdown-item{
+    color: #7f604e;
+    font-weight: bold;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #AC4314 !important;
+    color: white !important;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center; /* Centraliza os cards dentro das colunas */
+    align-items: start;
+    padding: 20px;
+    max-width: 100%; /* Permite que ocupe toda a largura */
+    box-sizing: border-box;
+  }
+  
+  .card {
+    background-color: #d77049;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    width: 250px;
+    max-height: 450px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease;
+    margin-top: 30px;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card.expandable:hover {
+    max-height: 500px;
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 250px;
+    min-height: 250px;
+    max-height: 250px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 20px;
+    border-radius: 27px;
+  }
+  
+  .image-container img.hover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  
+  .card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 0 10px;
+    height: 48px;
+    transition: all 0.3s;
+  }
+  
+  .card.expandable:hover .card-title {
+    -webkit-line-clamp: unset;
+    height: auto;
+    white-space: normal;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .preco {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .form-botao {
+    display: flex;
+    width: 100%;
+  }
+  
+  .btn {
+    background-color: #fff;
+    color: #AC4314;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    transition: background-color 0.5s;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    background-color: #AC4314;
+    color: #fff;
+  }
+  
+  /* Ícone flutuante */
+  .carrinho-flutuante {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: #AC4314;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s;
+  }
+  
+  .carrinho-flutuante:hover {
+    background-color: #8f3511;
+  }
+  
+  
+  @media (max-width: 991px) {
+    .carrinho-flutuante{
+      right: 20px;
+      bottom: 20px;
+      font-size: 30px;
+    }
+  
+    .imagem-lateral,
+    .imagens-container {
+      display: none;
+    }
+  
+    .titulo h1{
+      line-height: 0.7;
+      margin-top: 10%;
+      max-width: 90%;
+      font-size: 100px;
+    }
+  
+    .texto-container p{
+      max-width: 90%;
+      font-size: 18px;
+    }
+  
+    .opcao-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 30px 20px;
+      width: 90%;
+      gap: 0;
+    }
+  
+    .lado-direito {
+      order: 1;
+    }
+  
+    .lado-esquerdo {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+  
+    .lado-esquerdo img {
+      width: 100%;
+      max-width: 350px;
+      max-height: 250px;
+      margin-bottom: 15px;
+    }
+  
+    .botao-personalizado {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+  
+    .lado-direito h2 {
+      font-size: 28px;
+      margin-top: 0;
+    }
+  
+    .lado-direito p {
+      font-size: 18px;
+      max-width: 100%;
+      padding: 0 10px;
+    }
+  
+    .titulo-nosso-lar h1{
+      font-size: 100px
+    }
+  
+    .filtro{
+      gap: 3%;
+    }
+  
+    .margin-filtro{
+      margin-bottom: 5%;
+      align-items: center;
+      padding-left: 20px;
+    }
+  
+    .product-grid{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px){
+    .product-grid{
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 430px){
+    .titulo h1{
+      margin-top: 20%;
+    }
+  
+    .filtro{
+      justify-content: flex-start;
+    }
+  
+    .filtro button{
+      padding: 5px 3px;
+      font-size: 15px;
+    }
+  
+    .filtro p{
+      font-size: 15px;
+    }
+  }
+  
+  @media (min-width: 992px) and (max-width: 1100px){
+    .product-grid{
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  
+  @media (max-width: 1230px) {
+    .titulo-container {
+      gap: 6%;
+    }
+  }
+  
+  @media(max-width: 1771px){
+    .opcao-container{
+      width: 90%;
+    }
+  }
+  

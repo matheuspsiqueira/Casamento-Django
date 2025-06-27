@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Roxborough-cf';
+    src: url('../fonts/roxborough-cf-regular.ttf') format('truetype');
+    font-family: 'Virtual-regular';
+    src: url('../fonts/virtual-regular.ttf') format('truetype');
+  
+  }
+
+  body {
+    font-family: 'Roxborough-cf';
+    margin: 0;
+    padding: 0;
+    background-color: #fdf9f6;
+    color: #7f604e;
+    overflow-x: hidden;
+  }
+
+  /* Navbar branca com sombra */
+  .navbar {
+    background-color: #fdf9f6 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .navbar-brand img {
+    height: 70px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #AC4314 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 15px;
+  }
+  
+  .navbar-nav .dropdown-menu {
+    background-color: #fff;
+    border: none;
+  }
+  
+  .navbar-nav .dropdown-item {
+    color: #7f604e;
+    font-weight: 500;
+  }
+
+  .navbar-nav .dropdown-item:hover{
+    background-color: #AC4314;
+    color: #fff;
+    transition: 0.3s;
+  }
+
+  .nav-item.dropdown:hover .dropdown-menu{
+    display: block;
+  }

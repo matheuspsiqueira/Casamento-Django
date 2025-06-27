@@ -1,0 +1,250 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thamires & Matheus</title>
+  <link rel="icon" href="{% static 'img/Logo.png' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Thamires & Matheus">
+  <meta property="og:description" content="Vamos nos casar! Clique para ver os detalhes do nosso grande dia ❤️">
+  <meta property="og:image" content="https://matheuspsiqueira.github.io/Casamento/media/Logo.png">
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="{% static 'img/Logo.png' %}" alt="TM Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              Página Inicial
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#nossa-historia">Noivos</a></li>
+              <li><a class="dropdown-item" href="#cerimonia">Cerimônia</a></li>
+              <li><a class="dropdown-item" href="#mensagem">Mural de mensagens</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_presentes' %}">Lista de Presentes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'confirmar_presenca' %}">Confirmar Presença</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section com imagem de fundo -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="container">
+      <h1>Thamires</h1>
+      <h1>e Matheus</h1>
+      <p class="lead">Rio de Janeiro, 05 de Abril de 2026</p>
+    </div>
+  </section>
+
+  <!-- Noivos -->
+  <section id="noivos" class="text-center position-relative">
+    <img src="{% static 'img/folha.png' %}" class="folha-esquerda" alt="folha esquerda">
+    <img src="{% static 'img/folha.png' %}" class="folha-direita" alt="folha direita">
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div>
+            <img src="{% static 'img/noivo.jpg' %}" class="img-fluid rounded-circle" alt="foto do noivo">
+            <img src="{% static 'img/noiva.jpg' %}" class="noiva img-fluid rounded-circle" alt="foto da noiva">
+        </div>
+        <div class="texto-noivos">
+            <h1 class="h1-noivos">Vamos nos casar!</h1>
+            <p>Estamos muito felizes e queremos compartilhar todo o nosso amor com pessoas que amamos!</p>
+            <p>Por isso, criamos este site com um montão de coisas legais! Uma coisa importante, na sessão ‘Confirmação de Presença’, você poderá confirmar se vai ou não ao casamento. Confirme o mais rápido possível por favor, que assim, organizar tudo será muito mais fácil.</p>
+        </div>
+      </div>
+      <div class="countdown">
+        <div class="countdown_itens">
+          <div class="item">
+            <span id="dias">--</span>
+            <p>Dias</p>
+          </div>
+          <div class="item">
+            <span id="horas">--</span>
+            <p>Horas</p>
+          </div>
+          <div class="item">
+            <span id="minutos">--</span>
+            <p>Minutos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="base-noivos"></div>
+  </section>
+
+  <!-- Nossa história -->
+
+  <section id="nossa-historia" class="nossa-historia-section">
+    <div class="nossa-historia-container">
+      <div class="texto-nossa-historia">
+        <h1>Nossa Historia</h1>
+        <p>"E acima de tudo tenham amor, pois o amor une perfeitamente todas as coisas."</p>
+        <p class="versiculo">CL - 3:14</p>
+        <p>Cada detalhe tem sido cuidado por Ele, e é com essa certeza no coração que decidimos dar um passo importante: <strong>o casamento</strong>.</p>
+      </div>
+      <img class="img-nossa-historia" src="{% static 'img/colagem.png' %}" alt="colagem-juntos">
+    </div>
+    <div class="botao-historia-wrapper">
+      <a href="{% url 'nossa_historia' %}"><button>Nossa História</button></a>
+    </div>
+  </section>
+
+  <!-- Lista de Presentes -->
+
+  <section class="presentes-section">
+    <div class="presentes-container">
+      <div class="texto-presentes">
+        <h1>Lista de Presentes!</h1>
+        <p>
+          Sua presença já é o maior presente que poderíamos receber! Mas, se desejar nos presentear de outra forma, montamos uma lista com muito carinho.
+        </p>
+        <a href="lista_de_presentes.html"><button class="botao-presentes">Clique aqui para acessar nossa <strong>Lista de Presentes</strong></button></a>
+      </div>
+      <div class="imagem-presentes">
+        <img src="{% static 'img/icones.png' %}" alt="colagem-juntos" class="img-presentes">
+      </div>
+    </div>
+  </section>
+
+  <!-- Save the Date -->
+  <section class="save-the-date-section">
+    <div class="save-the-date-container">
+      <div class="video-save-the-date">
+        <video src="{% static 'img/video.mp4' %}" autoplay loop muted controls playsinline></video>
+      </div>
+      <div class="texto-save-the-date">
+        <h1>Save</h1>
+        <h1>the</h1>
+        <h1>date!</h1>
+        <h2>05.04.2026</h2>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Cerimônia -->
+  <section id="cerimonia" class="cerimonia-section">
+    <div class="cerimonia-container">
+      <div class="texto-cerimonia">
+        <h1>Cerimonia</h1>
+        <p class="texto-principal">
+          Estamos contando os dias para viver esse momento tão especial ao lado de pessoas queridas como você. Aqui estão todos os detalhes para você se programar e curtir cada segundo conosco!
+        </p>
+        <p><strong>Data:</strong> 05 de abril de 2026</p>
+        <p><strong>Horário:</strong> 15h30</p>
+        <p><strong>Local:</strong> Green House Buffet</p>
+        <p><strong>Endereço:</strong> Rua Cumplido de Santana, 25 – Jardim Guanabara, Ilha do Governador – RJ</p>
+      </div>
+      <div class="imagem-cerimonia">
+        <img src="{% static 'img/cerimonia.png' %}" alt="imagem da cerimônia" class="img-cerimonia">
+      </div>
+    </div>
+  </section>
+
+<!-- Como chegar -->
+  <section id="mapa-local" class="cerimonia-section">
+    <div class="mapa-container">
+      <div id="map" style="height: 500px; margin-bottom: 2rem;"></div>
+      <p>Digite aqui um endereço de partida para traçar uma rota:</p>
+      <input type="text" id="enderecoPartida" class="entrada-texto" placeholder="Local de partida...">
+      <button id="btnTraçarRota" class="botao-mapa">Traçar rota</button>
+    </div>
+  </section>
+
+  <!-- Mensagens -->
+  <section id="mensagem" class="mensagem-section">
+    <div class="mensagem-container">
+      
+      <div class="mensagem-texto">
+        <h1>Seu carinho faz parte da nossa historia!</h1>
+        <p>Estamos vivendo um dos momentos mais felizes da nossa vida e saber que temos pessoas incríveis ao nosso lado torna tudo ainda mais especial.</p>
+        <p>Se você quiser deixar uma mensagem, um conselho, uma lembrança divertida ou até uma benção para essa nova etapa, esse espaço é todo seu. Vamos guardar com carinho cada palavra enviada aqui.</p>
+      </div>
+  
+      <div class="mensagem-formulario">
+        <p>Envie sua mensagem diretamente pelo formulário abaixo:</p>
+  
+        <form method="post" action="{% url 'enviar_mensagem' %}">
+          {% csrf_token %}
+
+          <div class="input-group nome">
+            <label for="input-nome">Nome:</label>
+            <input type="text" id="input-nome" name="nome" placeholder="Seu nome" class="input-nome" />
+          </div>
+    
+          <div class="input-group mensagem">
+            <label for="input-mensagem">Mensagem:</label>
+            <textarea id="input-mensagem" name="mensagem" placeholder="Sua mensagem" class="input-mensagem"></textarea>
+          </div>
+
+          <button type="submit" class="botao-mensagem">Enviar mensagem</button>
+        </form>
+
+      </div>
+  
+    </div>
+  </section>
+
+  <!-- Confirmação de Presença -->
+  <section class="confirmacao-section">
+    <div class="confirmacao-container">
+  
+      <div class="confirmacao-texto">
+        <h1>Confirmacao de Presenca!</h1>
+        <p>Vai celebrar esse dia com a gente?</p>
+        <p>Confirme sua presença para que tudo esteja preparado com amor e cuidado!</p>
+        <a href="{% url 'confirmar_presenca' %}"><button class="botao-confirmar">Confirmar Presença</button></a>
+      </div>
+  
+      <div class="confirmacao-imagem">
+        <img src="{% static 'img/nossa-foto.jpg' %}" alt="Foto do casal" class="img-oval" />
+        <img src="{% static 'img/folha.png' %}" alt="folha decorativa" class="folha-decorativa" />
+      </div>
+  
+    </div>
+  </section>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+
+{% if sucesso %}
+  <script>
+    alert("Mensagem enviada com sucesso! Obrigado pelo carinho ❤");
+  </script>
+{% endif %}
+
+</body>
+</html>

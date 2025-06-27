@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thamires & Matheus</title>
+  <link rel="icon" href="{% static 'img/Logo.png' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style_confirma.css' %}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Thamires & Matheus">
+  <meta property="og:description" content="Vamos nos casar! Clique para ver os detalhes do nosso grande dia ❤️">
+  <meta property="og:image" content="https://matheuspsiqueira.github.io/Casamento/media/Logo.png">
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="{% static 'img/Logo.png' %}" alt="TM Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="{% url 'index' %}" role="button">Página Inicial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_presentes' %}">Lista de Presentes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'confirmar_presenca' %}">Confirmar Presença</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="titulo">
+    <div class="container">
+      <h1>Confirmacao de Presenca</h1>
+      
+    </div>
+  </section>
+
+  <section class="texto">
+    <div class="container">
+      <p>Para nos ajudar com os preparativos (e garantir que tudo esteja perfeito), pedimos que confirme sua presença. É rapidinho e faz toda a diferença pra gente.</p>
+      <p><strong>Preencha o formulário abaixo e vem celebrar com a gente!</strong></p>
+    </div>
+  </section>
+
+  <section class="formulario">
+    <div class="container">
+      <div id="mensagem-feedback"></div>
+      <div class="form-container">
+        
+        <form method="post" action="{% url 'formulario_confirmacao' %}">
+          {% csrf_token %}
+          <input type="text" name="nome" placeholder="Nome completo *" required />
+        
+          <div class="row-radio">
+            <div class="section-title">Você irá ao evento?</div>
+            <div class="radio-group">
+              <label><input type="radio" name="comparecera" value="SIM" required /> Sim</label>
+              <label><input type="radio" name="comparecera" value="NAO" /> Não</label>
+            </div>
+          </div>
+        
+          <input type="tel" name="telefone" placeholder="Telefone *" required />
+        
+          <div class="section-title">Quantos acompanhantes?</div>
+        
+          <div class="row-counter">
+            <div class="counter-label margin">Adultos:</div>
+            <div class="counter">
+              <button type="button" onclick="updateCount('adultos', -1)">-</button>
+              <span id="adultos">0</span>
+              <button type="button" onclick="updateCount('adultos', 1)">+</button>
+            </div>
+          </div>
+          <div class="small-note">A partir de 10 anos</div>
+          
+          <div class="row-counter">
+            <div class="counter-label">Crianças:</div>
+            <div class="counter">
+              <button type="button" onclick="updateCount('criancas', -1)">-</button>
+              <span id="criancas">0</span>
+              <button type="button" onclick="updateCount('criancas', 1)">+</button>
+            </div>
+          </div>
+          <div class="small-note">Até 09 anos</div>
+        
+          <div id="acompanhantes-container"></div>
+          <input type="hidden" id="acompanhantes" name="acompanhantes" />
+        
+          <button class="submit" type="submit">Responder</button>
+        </form>
+
+        
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script src="{% static 'js/script_confirmar.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!--TELEFONE FORMATO-->
+  <script>
+    $(document).ready(function () {
+      console.log("jQuery está funcionando!");
+      $('input[name="telefone"]').mask('(00) 00000-0000');
+    });
+  </script>
+  
+
+
+</body>
+</html>

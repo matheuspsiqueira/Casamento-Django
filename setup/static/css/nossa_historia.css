@@ -1,0 +1,321 @@
+@font-face {
+    font-family: 'Roxborough-cf';
+    src: url('fonts/roxborough-cf-regular.ttf') format('truetype');
+    font-family: 'Virtual-regular';
+    src: url('fonts/Virtual-regular.ttf') format('truetype');
+  
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Roxborough-cf';
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/borda.png'), url('../img/borda.png');
+    background-repeat: repeat-y, repeat-y;
+    background-position: left top, right top;
+    background-attachment: scroll;
+    background-color: #fdf9f6;
+    color: #7f604e;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  /* Navbar branca com sombra */
+  .navbar {
+    background-color: #fdf9f6 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .navbar-brand img {
+    height: 70px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #AC4314 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 15px;
+  }
+  
+  .navbar-nav .dropdown-menu {
+    background-color: #fff;
+    border: none;
+  }
+  
+  .navbar-nav .dropdown-item {
+    color: #7f604e;
+    font-weight: 500;
+  }
+  
+  .navbar-nav .dropdown-item:hover{
+    background-color: #AC4314;
+    color: #fff;
+    transition: 0.3s;
+  }
+  
+  .nav-item.dropdown:hover .dropdown-menu{
+    display: block;
+  }
+  
+  /* Titulo */
+  
+  .titulo h1 {
+    color: #AC4314;
+    font-size: 170px;
+    font-family: 'Virtual-regular';
+    text-align: center;
+    margin-top: 10%;
+    max-width: 100%;
+  }
+  
+  .titulo p {
+    color: #AC4314;
+    text-align: center;
+    max-width: 100%;
+    margin-top: -2%;
+    font-size: 22px;
+  }
+  
+  /* Texto */
+  
+  .texto .margem {
+    margin-top: 5%;
+  }
+  
+  .texto p {
+    text-align: center;
+    max-width: 100%;
+    font-size: 25px;
+    padding: 0 8px;
+  }
+  
+  /* Carrossel */
+  
+  .carrossel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .carrossel-container {
+    display: flex;
+    animation: slide 18s infinite ease-in-out;
+    width: 3600px; /* 3 grupos de 1200px */
+    z-index: 1;
+  }
+  
+  .carrossel-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
+    width: 1200px;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+  
+  .carrossel-grupo img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    height: 250px;
+    z-index: 1;
+  }
+  
+  /* Animação Carrossel */
+  @keyframes slide {
+    0%, 20% {
+      transform: translateX(0);
+    }
+    30%, 50% {
+      transform: translateX(-1200px);
+    }
+    60%, 80% {
+      transform: translateX(-2400px);
+    }
+    90%, 100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .base {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza certinho */
+    width: 100%;
+    height: 450px;
+    background-color: #d77049;
+    z-index: 0; 
+    border-radius: 30px;
+  }
+  
+  
+  /* RESPONSIVO PARA NOTEBOOKS */
+  
+  @media (max-width: 1200px) and (min-width: 992px) {
+    .carrossel {
+      width: 100%;
+    }
+  
+    .carrossel-container {
+      display: flex;
+      width: 300%; /* 3 grupos */
+      animation: slide-notebook 18s infinite ease-in-out;
+    }
+  
+    .carrossel-grupo {
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    .carrossel-grupo img {
+      width: 250px;
+      height: 220px;
+    }
+  
+    .base {
+      height: 400px;
+    }
+  }
+  
+  @keyframes slide-notebook {
+    0%, 10% { transform: translateX(0); }
+    11%, 21% { transform: translateX(-80vw); }
+    22%, 32% { transform: translateX(-160vw); }
+    33%, 43% { transform: translateX(-240vw); }
+    44%, 54% { transform: translateX(-320vw); }
+    55%, 60% { transform: translateX(-370vw); }
+    90%{ transform: translateX(0);}
+  }
+  
+  
+  /* RESPONSIVO GERAL PARA MOBILE */
+  @media (max-width: 991px) {
+    body {
+      background-size: 35px;
+    }
+  
+    .navbar-brand img {
+      height: 50px;
+    }
+  
+    .navbar-nav .nav-link {
+      margin-left: 0;
+      text-align: center;
+    }
+  
+    .titulo h1 {
+      line-height: 0.6;
+      margin-top: 30%;
+      font-size: 80px;
+    }
+  
+    .titulo p {
+      margin-top: 5%;
+      font-size: 18px;
+    }
+  
+    .texto p {
+      font-size: 16px;
+    }
+  
+    /* Carrossel */
+  
+    .carrossel-container {
+      width: 900vw;
+      animation: slide-mobile 18s infinite ease-in-out;
+    }
+  
+    .carrossel-grupo {
+      width: 100vw;
+      flex-direction: row;
+      padding: 10px;
+      gap: 20px;
+      justify-content: center;
+    }
+  
+    .carrossel-grupo img {
+      width: 200px;
+      height: 180px;
+    }
+  
+    .base {
+      height: 200px;
+    }
+  
+    @keyframes slide-mobile {
+      0%, 10% { transform: translateX(0); }
+      11%, 21% { transform: translateX(-100vw); }
+      22%, 32% { transform: translateX(-200vw); }
+      33%, 43% { transform: translateX(-300vw); }
+      44%, 54% { transform: translateX(-400vw); }
+      55%, 65% { transform: translateX(-500vw); }
+      66%, 76% { transform: translateX(-600vw); }
+      77%, 87% { transform: translateX(-700vw); }
+      88%, 98% { transform: translateX(-800vw); }
+      99%, 100% { transform: translateX(0);}
+    }
+  }
+  
+  
+  /* Ajustes finos por faixa de largura */
+  @media (max-width: 610px) {
+    .carrossel-grupo img {
+      width: 210px;
+      height: 170px;
+    }
+    .base {
+      height: 190px;
+    }
+  }
+  
+  @media (max-width: 580px) {
+    .carrossel-grupo img {
+      width: 200px;
+      height: 150px;
+    }
+    .base {
+      height: 170px;
+    }
+  }
+  
+  @media (max-width: 549px) {
+    .carrossel-grupo img {
+      width: 185px;
+      height: 140px;
+    }
+    .base {
+      height: 160px;
+    }
+  }
+  
+  @media (max-width: 510px) {
+    .carrossel-grupo img {
+      width: 175px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carrossel-grupo img {
+      width: 165px;
+    }
+  }

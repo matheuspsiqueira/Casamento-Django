@@ -235,7 +235,7 @@ def finalizar_compra(request):
             "unit_price": float(item['preco'])
         })
 
-    ngrok_url = "https://13bb06f1e653.ngrok-free.app"  # REMOVER APÓS TESTES
+    ngrok_url = "https://4af45a45801a.ngrok-free.app"  # REMOVER APÓS TESTES
 
     preference_data = {
         "items": items,

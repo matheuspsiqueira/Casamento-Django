@@ -224,10 +224,8 @@
 <div class="product-grid" id="product-grid-casa">
   {% for produto in produtos_casa %}
     <div class="card 
-      {% if produto.cotas is not None and produto.cotas > 0 %}
-      {% elif produto.cotas is none and produto.foi_comprado %}
-        produto-inativo
-      {% elif produto.cotas == 0 %}
+      {% if produto.cotas_disponiveis > 0 %}
+      {% else %}
         produto-inativo
       {% endif %}
     ">
@@ -237,8 +235,8 @@
       <div class="card-body">
         <h5 class="card-title">{{ produto.nome }}</h5>
         <p class="preco">
-          {% if produto.cotas %}
-            {{ produto.cotas }} cotas de R$ <strong>{{ produto.preco }}</strong>
+          {% if produto.cotas_disponiveis %}
+            {{ produto.cotas_disponiveis }} cotas de R$ <strong>{{ produto.preco }}</strong>
           {% else %}
             R$ <strong>{{ produto.preco }}</strong>
           {% endif %}
@@ -246,15 +244,11 @@
         <form class="form-botao" method="post" action="{% url 'adicionar_ao_carrinho' produto.id %}">
           {% csrf_token %}
           <button type="submit" class="btn"
-            {% if produto.cotas is not None and produto.cotas > 0 %}
-              {% comment %}Disponível{% endcomment %}
-            {% elif produto.cotas is none and produto.foi_comprado %}
-              disabled
-            {% elif produto.cotas == 0 %}
+            {% if produto.foi_comprado %}
               disabled
             {% endif %}
           >
-            {% if produto.cotas is not None and produto.cotas > 0 %}
+            {% if produto.cotas_disponiveis > 0 %}
               Presentear
             {% else %}
               Presenteado
@@ -263,7 +257,7 @@
         </form>
       </div>
     </div>
-  {% empty %}
+    {% empty %}
     <p>Nenhum produto cadastrado para esta seção.</p>
   {% endfor %}
 </div>

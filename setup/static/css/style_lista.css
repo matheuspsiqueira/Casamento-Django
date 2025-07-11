@@ -318,6 +318,19 @@
   .carrinho-flutuante:hover {
     background-color: #8f3511;
   }
+
+  .contador-carrinho{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff0000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 4px 6px;
+    line-height: 1;
+  }
   
   .card.produto-inativo {
     background-color: #d76f4942;

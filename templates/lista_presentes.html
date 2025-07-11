@@ -51,6 +51,9 @@
   <!-- Ponto flutuante -->
   <a href="{% url 'carrinho' %}" class="carrinho-flutuante" title="Ir para o carrinho">
     <i class="fas fa-shopping-cart"></i>
+    {% if total_itens_carrinho > 0 %}
+      <span class="contador-carrinho">{{ total_itens_carrinho }}</span>
+    {% endif %}
   </a>
   <!---->
 

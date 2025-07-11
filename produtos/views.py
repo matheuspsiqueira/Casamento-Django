@@ -15,6 +15,8 @@ def lista_presentes(request):
 
     produtos_casa = Produto.objects.filter(categoria=Categoria.CASA)
     produtos_lua_de_mel = Produto.objects.filter(categoria=Categoria.LUA_DE_MEL)
+    carrinho = request.session.get('carrinho', {})
+    total_itens = sum(item['quantidade'] for item in carrinho.values())
 
     for produto in produtos_casa:
         produto.cotas_restantes = produto.cotas_disponiveis
@@ -25,6 +27,7 @@ def lista_presentes(request):
     return render(request, 'lista_presentes.html', {
         'produtos_casa': produtos_casa,
         'produtos_lua_de_mel': produtos_lua_de_mel,
+        'total_itens_carrinho': total_itens
     })
 
 

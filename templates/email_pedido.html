@@ -1,0 +1,19 @@
+<h2>Oi, Thamires & Matheus!</h2>
+<h3>Vocês acabaram de receber um presente na lista de casamento!</h3>
+
+<h4><strong>Olha só os detalhes:</strong></h4>
+<ul>
+  {% for id, item in carrinho.items %}
+    <li>
+      {{item.imagem}} - {{ item.nome }} - Quantidade: {{ item.quantidade }} - Preço unitário: R$ {{ item.preco|floatformat:2 }}
+    </li>
+  {% endfor %}
+  <p><strong>Total:</strong> R$ {{ total|floatformat:2 }}</p>
+  <p><strong>Presenteado por:</strong> {{ dados.nome }}</p>
+</ul>
+
+<h3>Quer acompanhar todos os presentes recebidos?</h3>
+
+<a href="https://thamiresematheus2026.com/admin">Acesse sua lista aqui</a>
+
+

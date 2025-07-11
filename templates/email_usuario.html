@@ -1,0 +1,28 @@
+
+
+<h2>Olá, {{ dados.nome }}!</h2>
+
+<h3>O seu presente foi recebido com muito carinho por nós!</h3>
+
+<h4><strong>Aqui estão os detalhes do seu presente:</strong></h4>
+<ul>
+    {% for id, item in carrinho.items %}
+    <li>
+        Presente escolhido: {{item.nome}} - Quantidade: {{item.quantidade}} - Preço unitário: R$ {{item.preco|floatformat:2}}
+    </li>
+    {% endfor %}
+    <p><strong>Total: </strong>R$ {{total|floatformat:2}}</p>
+</ul>
+
+<h3>A sua presença, seja no evento ou no gesto, faz toda a diferença nesse momento tão especial.</h3>
+
+<h3>Se <strong>ainda não confirmou presença</strong> no casamento, aproveite para fazer isso aqui:</h3>
+
+<a href="https://thamiresematheus2026.com/confirmar_presenca">[Confirmar presença]</a><br><br>
+
+<p>Qualquer dúvida, estamos por aqui:<br>
+matheuspontessiqueira@gmail.com<br>
+thamires.szcerqueira@gmail.com</p>
+
+<p>Com amor,<br>
+Thamires & Matheus</p>

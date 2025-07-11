@@ -1,0 +1,23 @@
+{% for produto in produtos %}
+  <div class="card">
+    <div class="image-container">
+      <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ produto.nome }}</h5>
+      <p class="preco">
+        {% if produto.cotas %}
+          {{ produto.cotas }} cotas de R$ <strong>{{ produto.preco }}</strong>
+        {% else %}
+          R$ <strong>{{ produto.preco }}</strong>
+        {% endif %}
+      </p>
+      <form method="post" action="{% url 'adicionar_ao_carrinho' produto.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Presentear</button>
+      </form>
+    </div>
+  </div>
+{% empty %}
+  <p>Nenhum produto encontrado.</p>
+{% endfor %}

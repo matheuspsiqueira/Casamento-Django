@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thamires & Matheus</title>
+  <link rel="icon" href="{% static 'img/Logo.png' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nossa_historia.css' %}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Thamires & Matheus">
+  <meta property="og:description" content="Vamos nos casar! Clique para ver os detalhes do nosso grande dia ❤️">
+  <meta property="og:image" content="https://matheuspsiqueira.github.io/Casamento/img/Logo.png">
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="{% static 'img/Logo.png' %}" alt="TM Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="{% url 'index' %}" role="button">Página Inicial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_presentes' %}">Lista de Presentes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'confirmar_presenca' %}">Confirmar Presença</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="titulo">
+    <div class="container">
+      <h1>Thamires e Matheus</h1>
+      <p class="lead">Rio de Janeiro, 05 de Abril de 2026</p>
+    </div>
+  </section>
+
+  <section class="texto">
+    <div class="container">
+        <p class="margem">Nem toda história de amor começa com “Era uma vez”... a nossa começou com um <strong>“Oi, tudo bem?” meio tímido.</strong> Nos conhecemos em um lugar inesperado - só um encontro entre o cara do TI e a menina do Marketing. E o resto... é história: recheada de memes, risadas, conversas até de madrugada e algumas boas coincidências.</p>
+
+        <p>Tudo começou de um jeito simples, sem pressa, mas com muito propósito. Não foi por acaso — <strong>foi cuidado de Deus.</strong> Ele nos uniu no tempo certo, com corações preparados para viver algo verdadeiro.</p>
+
+        <p>Desde então, tudo tem feito sentido: os encontros, os aprendizados, os sorrisos, os silêncios, os choros e, principalmente, os momentos que vivemos quando estamos juntos.</p>
+
+        <p>Ao longo do tempo, entre domingos na igreja, tardes torcendo pelo Mengão 🔴⚫, cafés compartilhados, maratonas de The Chosen (e outras séries!), conversas sobre a vida e orações diárias, percebemos que o nosso amor também é uma resposta dEle.</p>
+
+        <p>O amor é leve quando é parceria. Ele se mostra no cuidado, na fé, no companheirismo. Está nos detalhes: em lembrar do lanche preferido, em ouvir com atenção depois de um dia difícil, em orar juntos, rir juntos, crescer juntos.</p>
+
+        <p>Acreditamos que Deus é quem escreve cada capítulo da nossa história e, por isso, temos plena confiança de que o que vem pela frente será ainda mais bonito do que tudo que já vivemos.</p>
+
+        <p>Agora, estamos prestes a dar um passo importante: <strong>o casamento.</strong></p>
+
+        <p>Mais do que uma celebração, esse dia será um testemunho do que Deus tem feito em nós e através de nós.</p>
+
+        <p>Se você está aqui, é porque faz parte dessa história. E ter você ao nosso lado torna tudo ainda mais especial.</p>
+
+        <p class="margem">Com amor e gratidão (e uma pontinha de ansiedade pelo grande dia),</p>
+
+        <p><strong>Thamires & Matheus</strong></p>
+    </div>
+  </section>
+
+  <section class="carrossel">
+    <div class="base"></div>
+
+    
+    <div class="carrossel-container">
+    
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/1.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/2.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/3.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/4.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/5.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/6.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/7.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/8.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/9.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/10.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/11.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/12.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/13.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/14.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/15.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/16.jpg' %}" alt="img2">
+      
+      </div>
+      <div class="carrossel-grupo">
+      
+        <img src="{% static 'img/fotos/17.jpg' %}" alt="img1">
+        
+        <img src="{% static 'img/fotos/18.jpg' %}" alt="img2">
+      
+      </div>
+
+    </div>
+    
+    </section>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

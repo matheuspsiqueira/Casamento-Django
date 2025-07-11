@@ -144,31 +144,46 @@
   </section>
 
   <!--Produtos-->
-  <div class="product-grid" id="product-grid-lua">
-    {% for produto in produtos_lua_de_mel %}
-    <div class="card">
+<div class="product-grid" id="product-grid-lua">
+  {% for produto in produtos_lua_de_mel %}
+    <div class="card 
+      {% if produto.cotas_disponiveis > 0 %}
+      {% else %}
+        produto-inativo
+      {% endif %}
+    ">
       <div class="image-container">
         <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ produto.nome }}</h5>
         <p class="preco">
-          {% if produto.cotas %}
-            {{ produto.cotas }} cotas de R$ <strong>{{ produto.preco }}</strong>
+          {% if produto.cotas_disponiveis %}
+            {{ produto.cotas_disponiveis }} cotas de R$ <strong>{{ produto.preco }}</strong>
           {% else %}
             R$ <strong>{{ produto.preco }}</strong>
           {% endif %}
         </p>
         <form class="form-botao" method="post" action="{% url 'adicionar_ao_carrinho' produto.id %}">
           {% csrf_token %}
-          <button type="submit" class="btn">Presentear</button>
+          <button type="submit" class="btn"
+            {% if produto.foi_comprado %}
+              disabled
+            {% endif %}
+          >
+            {% if produto.cotas_disponiveis > 0 %}
+              Presentear
+            {% else %}
+              Presenteado
+            {% endif %}
+          </button>
         </form>
       </div>
     </div>
     {% empty %}
-      <p>Nenhum produto cadastrado para esta seção.</p>
-    {% endfor %}
-  </div>
+    <p>Nenhum produto cadastrado para esta seção.</p>
+  {% endfor %}
+</div>
 </section>
 
 <!--SEÇÃO CASA-->
@@ -203,9 +218,16 @@
   </section>
 
   <!--Produtos-->
-  <div class="product-grid" id="product-grid-casa">
-    {% for produto in produtos_casa %}
-    <div class="card">
+<div class="product-grid" id="product-grid-casa">
+  {% for produto in produtos_casa %}
+    <div class="card 
+      {% if produto.cotas is not None and produto.cotas > 0 %}
+      {% elif produto.cotas is none and produto.foi_comprado %}
+        produto-inativo
+      {% elif produto.cotas == 0 %}
+        produto-inativo
+      {% endif %}
+    ">
       <div class="image-container">
         <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
       </div>
@@ -220,14 +242,28 @@
         </p>
         <form class="form-botao" method="post" action="{% url 'adicionar_ao_carrinho' produto.id %}">
           {% csrf_token %}
-          <button type="submit" class="btn">Presentear</button>
+          <button type="submit" class="btn"
+            {% if produto.cotas is not None and produto.cotas > 0 %}
+              {% comment %}Disponível{% endcomment %}
+            {% elif produto.cotas is none and produto.foi_comprado %}
+              disabled
+            {% elif produto.cotas == 0 %}
+              disabled
+            {% endif %}
+          >
+            {% if produto.cotas is not None and produto.cotas > 0 %}
+              Presentear
+            {% else %}
+              Presenteado
+            {% endif %}
+          </button>
         </form>
       </div>
     </div>
-    {% empty %}
-      <p>Nenhum produto cadastrado para esta seção.</p>
-    {% endfor %}
-  </div>
+  {% empty %}
+    <p>Nenhum produto cadastrado para esta seção.</p>
+  {% endfor %}
+</div>
 </section>
 
 <script src="{% static 'js/lista-presentes.js' %}"></script>

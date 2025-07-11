@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-from .models import Produto, Categoria
+from .models import Produto, Categoria, Pedido, ItemPedido
 from django.urls import reverse
 
 
@@ -15,6 +15,12 @@ def lista_presentes(request):
 
     produtos_casa = Produto.objects.filter(categoria=Categoria.CASA)
     produtos_lua_de_mel = Produto.objects.filter(categoria=Categoria.LUA_DE_MEL)
+
+    for produto in produtos_casa:
+        produto.cotas_restantes = produto.cotas_disponiveis
+
+    for produto in produtos_lua_de_mel:
+        produto.cotas_restantes = produto.cotas_disponiveis
 
     return render(request, 'lista_presentes.html', {
         'produtos_casa': produtos_casa,
@@ -74,25 +80,31 @@ def carrinho(request):
 
 def adicionar_ao_carrinho(request, produto_id):
     produto = get_object_or_404(Produto, id=produto_id)
-    carrinho = request.session.get('carrinho', {})
+    cotas_restantes = produto.cotas_disponiveis
 
+    if cotas_restantes == 0:
+        # Produto indisponível para compra
+        return redirect('lista_presentes')  # ou mensagem para o usuário
+
+    carrinho = request.session.get('carrinho', {})
     produto_id_str = str(produto_id)
 
+    quantidade_no_carrinho = carrinho.get(produto_id_str, {}).get('quantidade', 0)
+    if quantidade_no_carrinho >= cotas_restantes:
+        # Já está no máximo permitido no carrinho
+        return redirect('carrinho')
+
     if produto_id_str in carrinho:
-        if produto.cotas:
-            if carrinho[produto_id_str]['quantidade'] < produto.cotas:
-                carrinho[produto_id_str]['quantidade'] += 1
-        else:
-            pass
+        carrinho[produto_id_str]['quantidade'] += 1
     else:
         carrinho[produto_id_str] = {
             'nome': produto.nome,
             'preco': float(produto.preco),
             'quantidade': 1,
             'foto': produto.foto.url,
-            'cotas':produto.cotas
+            'cotas': produto.cotas
         }
-    
+
     request.session['carrinho'] = carrinho
     return redirect('carrinho')
 
@@ -220,20 +232,19 @@ def finalizar_compra(request):
             "unit_price": float(item['preco'])
         })
 
-    ngrok_url = "https://b0a78066e52f.ngrok-free.app"       #REMOVER APÓS TESTES
+    ngrok_url = "https://13bb06f1e653.ngrok-free.app"  # REMOVER APÓS TESTES
 
     preference_data = {
         "items": items,
         "payer": {
             "email": "test_user_1551517350@testuser.com"    #ALTERAR PARA dados.get('email')
-
         },
         "payment_methods": {
             "installments": 12
         },
         "back_urls": {
-            "success": f"{ngrok_url}/carrinho/etapa4/",     #ALTERAR PARA URL CERTA
-            "failure": f"{ngrok_url}/erro-pagamento/",      #ALTERAR PARA URL CERTA
+            "success": f"{ngrok_url}/carrinho/etapa4/",      #ALTERAR PARA URL CERTA
+            "failure": f"{ngrok_url}/erro-pagamento/",       #ALTERAR PARA URL CERTA
         },
         "auto_return": "approved",
     }
@@ -241,7 +252,7 @@ def finalizar_compra(request):
     preference_response = sdk.preference().create(preference_data)
     preference = preference_response.get("response", {})
     init_point = preference.get('init_point')
-    sandbox_link = preference_response["response"]["sandbox_init_point"]    #EXCLUIR
+    sandbox_link = preference.get("sandbox_init_point")
 
     if not init_point:
         print("Erro ao criar preferência:", preference_response)
@@ -255,35 +266,69 @@ def etapa4(request):
 
     if not payment_id:
         return redirect('erro_pagamento')
-    
+
     carrinho = request.session.get('carrinho', {})
-    dados_usuario = request.session.get('dados_usuario', {})
+    dados = request.session.get('dados_usuario', {})
+    if not carrinho or not dados:
+        return redirect('carrinho')
+
+    # Cria o Pedido
+    pedido = Pedido.objects.create(
+        nome_cliente=dados.get('nome'),
+        email_cliente=dados.get('email'),
+        telefone_cliente=dados.get('telefone'),
+        cpf_cliente=dados.get('cpf')
+    )
+
+    # Cria Itens do Pedido e ajusta cotas
+    for produto_id_str, item in carrinho.items():
+        produto = get_object_or_404(Produto, id=int(produto_id_str))
+        qtd = item['quantidade']
+
+        # Verifica disponibilidade ainda!
+        if qtd > produto.cotas_disponiveis:
+            return redirect('carrinho')
+
+        # Cria ItemPedido
+        ItemPedido.objects.create(
+            pedido=pedido,
+            produto=produto,
+            quantidade=qtd
+        )
+
+        # Ajusta cotas se houver
+        if produto.cotas:
+            if produto.cotas_vendidas() >= produto.cotas:
+                produto.foi_comprado = True
+        else:
+            produto.foi_comprado = True
+
+        produto.save()
+
     total = sum(item['preco'] * item['quantidade'] for item in carrinho.values())
 
-    # Montar conteúdo do e-mail
+    # Envia e-mails
     assunto = 'Novo pedido realizado no site'
-    destinatario = ['matheuspontessiqueira@gmail.com']  # Substitua pelo seu e-mail real
+    destinatario = ['matheuspontessiqueira@gmail.com']
 
     conteudo = render_to_string('email_pedido.html', {
-        'dados': dados_usuario,
+        'dados': dados,
         'carrinho': carrinho,
         'total': total,
     })
 
-    # Enviar e-mail
     send_mail(
         assunto,
-        '',  # Corpo simples (em branco, já que vamos usar HTML)
+        '',
         settings.DEFAULT_FROM_EMAIL,
         destinatario,
         html_message=conteudo,
     )
 
-    # E-mail para o comprador, se válido
-    email_usuario = dados_usuario.get('email')
+    email_usuario = dados.get('email')
     if email_usuario:
         conteudo_usuario = render_to_string('email_usuario.html', {
-            'dados': dados_usuario,
+            'dados': dados,
             'carrinho': carrinho,
             'total': total,
         })
@@ -300,9 +345,9 @@ def etapa4(request):
 
     return render(request, 'carrinho.html', {
         'etapa': 4,
-        'carrinho': carrinho,
-        'total': total,
-        'dados': dados_usuario
+        'carrinho': {},
+        'total': 0,
+        'dados': dados
     })
 
 def erro_pagamento(request):

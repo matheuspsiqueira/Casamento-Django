@@ -319,7 +319,22 @@
     background-color: #8f3511;
   }
   
+  .card.produto-inativo {
+    background-color: #d76f4942;
+    filter: grayscale(80%) brightness(0.7);
+    pointer-events: none;
+  }
   
+  .card.produto-inativo .image-container{
+    filter: grayscale(80%) brightness(1) !important;
+    opacity: 0.4;
+  }
+  
+  .card.produto-inativo .btn {
+    cursor: not-allowed;
+  }
+
+
   @media (max-width: 991px) {
     .carrinho-flutuante{
       right: 20px;

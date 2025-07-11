@@ -21,6 +21,38 @@ class Produto(models.Model):
     categoria = models.CharField(max_length=20, choices=Categoria.choices, default=Categoria.CASA)
     subcategoria = models.CharField(max_length=40, choices=Subcategoria.choices, blank=True, null=True)
     cotas = models.PositiveIntegerField(null=True, blank=True)
+    foi_comprado = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.nome
+
+    def cotas_vendidas(self):
+        from .models import ItemPedido
+        vendidos = ItemPedido.objects.filter(produto=self).aggregate(total=models.Sum('quantidade'))['total']
+        return vendidos or 0
+
+    @property
+    def cotas_disponiveis(self):
+        if self.cotas is None:
+            return 0 if self.foi_comprado else 1
+        vendidos = self.cotas_vendidas()
+        return max(self.cotas - vendidos, 0)
+
+class Pedido(models.Model):
+    criado_em = models.DateTimeField(auto_now_add=True)
+    nome_cliente = models.CharField(max_length=200)
+    email_cliente = models.EmailField()
+    telefone_cliente = models.CharField(max_length=30)
+    cpf_cliente = models.CharField(max_length=14)
+
+    def __str__(self):
+        return f'Pedido {self.id} - {self.nome_cliente}'
+
+class ItemPedido(models.Model):
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='itens')
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f'{self.quantidade}x {self.produto.nome}'

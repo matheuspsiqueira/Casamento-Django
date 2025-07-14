@@ -1,5 +1,10 @@
 {% for produto in produtos %}
-  <div class="card">
+  <div class="card 
+  {% if produto.cotas_disponiveis > 0 %}
+  {% else %}
+    produto-inativo
+  {% endif %}
+  ">
     <div class="image-container">
       <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}">
     </div>
@@ -7,14 +12,24 @@
       <h5 class="card-title">{{ produto.nome }}</h5>
       <p class="preco">
         {% if produto.cotas %}
-          {{ produto.cotas }} cotas de R$ <strong>{{ produto.preco }}</strong>
-        {% else %}
-          R$ <strong>{{ produto.preco }}</strong>
-        {% endif %}
+            {{ produto.cotas_disponiveis }} cotas de R$ <strong>{{ produto.preco }}</strong>
+          {% else %}
+            R$ <strong>{{ produto.preco }}</strong>
+          {% endif %}
       </p>
       <form method="post" action="{% url 'adicionar_ao_carrinho' produto.id %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Presentear</button>
+        <button type="submit" class="btn"
+            {% if produto.foi_comprado %}
+              disabled
+            {% endif %}
+          >
+            {% if produto.cotas_disponiveis > 0 %}
+              Presentear
+            {% else %}
+              Presenteado
+            {% endif %}
+          </button>
       </form>
     </div>
   </div>

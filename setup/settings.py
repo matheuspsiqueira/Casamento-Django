@@ -141,7 +141,7 @@ STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
 '''
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://782f5baa32f6.ngrok-free.app",
+    "https://35cc6e99cd37.ngrok-free.app",
     "http://localhost",
     "http://127.0.0.1",
 ]

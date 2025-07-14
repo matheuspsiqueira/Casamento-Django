@@ -235,7 +235,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ produto.nome }}</h5>
         <p class="preco">
-          {% if produto.cotas_disponiveis %}
+          {% if produto.cotas %}
             {{ produto.cotas_disponiveis }} cotas de R$ <strong>{{ produto.preco }}</strong>
           {% else %}
             R$ <strong>{{ produto.preco }}</strong>
